@@ -57,10 +57,10 @@ export default function Banner() {
 
   return (
     <div>
-      <div ref={sliderRef} className="keen-slider h-[calc(100vh-50px)]">
+      <div ref={sliderRef} className="keen-slider h-[calc(100vh-100px)]">
         <div className="keen-slider__slide number-slide1">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img1}` + ')',
             }}
@@ -68,7 +68,7 @@ export default function Banner() {
         </div>
         <div className="keen-slider__slide number-slide2">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img2}` + ')',
             }}
@@ -76,7 +76,7 @@ export default function Banner() {
         </div>
         <div className="keen-slider__slide number-slide3">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img3}` + ')',
             }}
@@ -84,7 +84,7 @@ export default function Banner() {
         </div>
         <div className="keen-slider__slide number-slide4">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img4}` + ')',
             }}
@@ -92,7 +92,7 @@ export default function Banner() {
         </div>
         <div className="keen-slider__slide number-slide5">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img5}` + ')',
             }}
@@ -100,7 +100,7 @@ export default function Banner() {
         </div>
         <div className="keen-slider__slide number-slide6">
           <div
-            className="min-h-96 w-full bg-green-300 h-full"
+            className=" w-full bg-green-300 h-full bg-cover bg-no-repeat"
             style={{
               backgroundImage: 'url(' + `${img6}` + ')',
             }}
@@ -108,13 +108,40 @@ export default function Banner() {
         </div>
       </div>
 
-      <div ref={thumbnailRef} className="keen-slider thumbnail">
-        <div className="keen-slider__slide number-slide1">1</div>
-        <div className="keen-slider__slide number-slide2">2</div>
-        <div className="keen-slider__slide number-slide3">3</div>
-        <div className="keen-slider__slide number-slide4">4</div>
-        <div className="keen-slider__slide number-slide5">5</div>
-        <div className="keen-slider__slide number-slide6">6</div>
+      <div
+        ref={thumbnailRef}
+        className="keen-slider thumbnail mt-4 h-20 min-w-[60%] mx-auto"
+      >
+        <div className="keen-slider__slide number-slide1">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img1} alt="" />
+          </div>
+        </div>
+        <div className="keen-slider__slide number-slide2">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img2} alt="" />
+          </div>
+        </div>
+        <div className="keen-slider__slide number-slide3">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img3} alt="" />
+          </div>
+        </div>
+        <div className="keen-slider__slide number-slide4">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img4} alt="" />
+          </div>
+        </div>
+        <div className="keen-slider__slide number-slide5">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img5} alt="" />
+          </div>
+        </div>
+        <div className="keen-slider__slide number-slide6">
+          <div className="h-24">
+            <img className="w-40 h-full" src={img6} alt="" />
+          </div>
+        </div>
       </div>
     </div>
   );
