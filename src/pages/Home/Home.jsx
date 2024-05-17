@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Banner from '../../components/Banner/Banner';
 import CategorisSlider from '../../components/CategorisSlider/CategorisSlider';
 import ChefRecommendsSec from '../../components/ChefRecommends/ChefRecommendsSec';
@@ -11,6 +12,10 @@ import Testimonial from '../../components/Testimonial/Testimonial';
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home | Restaurant</title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+      </Helmet>
       <Banner />
       <div className="w-10/12 mx-auto">
         <Heading text="---From 11:00am to 10:00pm---" hed="ORDER ONLINE" />

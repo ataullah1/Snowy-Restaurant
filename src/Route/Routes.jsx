@@ -4,15 +4,20 @@ import About from '../pages/About/About';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Root from '../root/Root';
+import OurMenu from '../pages/OurMenu/OurMenu';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root/>,
+    element: <Root />,
     children: [
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/menu',
+        element: <OurMenu />,
       },
       {
         path: '/about',

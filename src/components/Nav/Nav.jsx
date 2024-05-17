@@ -43,7 +43,9 @@ const Nav = () => {
                 <Link className="block py-2 px-3">Home</Link>
               </li>
               <li>
-                <Link className="block py-2 px-3 ">Dropdown</Link>
+                <Link className="block py-2 px-3 " to={'menu'}>
+                  Our Menu
+                </Link>
               </li>
               <li>
                 <Link className="block py-2 px-3 ">Services</Link>
