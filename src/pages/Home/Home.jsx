@@ -5,6 +5,7 @@ import ContactNo from '../../components/ContactNo/ContactNo';
 import FromOurMenu from '../../components/FromOurMenu/FromOurMenu';
 import Heading from '../../components/Heading/Heading';
 import MiddleBanner from '../../components/MiddleBanner/MiddleBanner';
+import MiddleBanner2 from '../../components/MiddleBanner2.jsx/MiddleBanner2';
 
 const Home = () => {
   return (
@@ -19,6 +20,11 @@ const Home = () => {
         <ContactNo />
         <Heading text="---Should Try---" hed="CHEF RECOMMENDS" />
         <ChefRecommendsSec />
+      </div>
+      <MiddleBanner2 />
+
+      <div className="w-10/12 mx-auto">
+        <Heading text="---What Our Clients Say---" hed="TESTIMONIALS" />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ const Heading = ({ text, hed }) => {
       <div className="text-yellow-600 text-xl font-normal font-['Inter']">
         {text}
       </div>
-      <h1 className="border-y-4 border-gray-200 py-3 mt-3 inline-block px-5 text-neutral-900 text-[40px] font-normal">
+      <h1 className="border-y-4 border-gray-200 py-3 mt-3 inline-block px-5 text-[40px] font-normal">
         {hed}
       </h1>
     </div>
