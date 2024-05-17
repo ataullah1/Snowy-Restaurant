@@ -6,6 +6,7 @@ import FromOurMenu from '../../components/FromOurMenu/FromOurMenu';
 import Heading from '../../components/Heading/Heading';
 import MiddleBanner from '../../components/MiddleBanner/MiddleBanner';
 import MiddleBanner2 from '../../components/MiddleBanner2.jsx/MiddleBanner2';
+import Testimonial from '../../components/Testimonial/Testimonial';
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
 
       <div className="w-10/12 mx-auto">
         <Heading text="---What Our Clients Say---" hed="TESTIMONIALS" />
+        <Testimonial />
       </div>
     </div>
   );
