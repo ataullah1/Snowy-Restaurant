@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-900 text-white mt-10">
       <div className="flex flex-col md:flex-row items-center ">
-        <div className="w-full md:w-1/2 bg-gray-800 py-20 text-right md:pr-10 lg:pr-20">
+        <div className="w-full md:w-1/2 h-96 bg-gray-800 py-20 text-right md:pr-10 lg:pr-20">
           <div className=" max-w-96 text-center flex flex-col justify-center items-center ml-auto">
             <h3 className="text-white text-[32px] font-medium font-['Inter']">
               CONTACT US
@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 bg-gray-900 py-20 md:pl-10 lg:pl-20">
+        <div className="w-full h-96 md:w-1/2 bg-gray-900 py-20 md:pl-10 lg:pl-20">
           <div className="max-w-80 text-center flex flex-col justify-center items-center">
             <h2 className="text-white text-[32px] font-medium font-['Inter']">
               Follow US
