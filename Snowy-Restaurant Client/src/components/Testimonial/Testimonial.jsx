@@ -6,20 +6,30 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
-import { useEffect, useState } from 'react';
 
 import { Rating } from '@smastrom/react-rating';
 
 import '@smastrom/react-rating/style.css';
 import quotation from '../../assets/icon/quotation .png';
+import useAxios from '../../Hooks/useAxios';
+import { useQuery } from '@tanstack/react-query';
+import Loding from '../../pages/Loding/Loding';
 
 export default function Testimonial() {
-  const [review, setReview] = useState([]);
-  useEffect(() => {
-    fetch('reviews.json')
-      .then((res) => res.json())
-      .then((dta) => setReview(dta));
-  }, []);
+  const axios = useAxios();
+  const { data: review = [], isLoading } = useQuery({
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/reviews`
+      );
+      return data;
+    },
+    queryKey: ['reviews'],
+  });
+  // console.log(data);
+  if (isLoading) {
+    return <Loding />;
+  }
   return (
     <>
       <Swiper
