@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <div className="fixed z-10 w-full">
       <nav className="bg-[#15151580] border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-2xl w-10/12 flex flex-wrap items-center justify-between mx-auto py-4">
           <a
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -59,11 +59,16 @@ const Nav = () => {
                 <Link className="block py-2 px-3 ">Contact</Link>
               </li>
               <li>
-                <img
+                <Link to={'/login'}>
+                  <button className="py-2 px-6 bg-[#efa905] rounded ">
+                    Login
+                  </button>
+                </Link>
+                {/* <img
                   className="h-12 w-12 rounded-full"
                   src="https://lh3.googleusercontent.com/ogw/AF2bZygUqZp2qJPxkrop1vkMU0xrtvtWmzbZUomScZ9IJpjRILY=s32-c-mo"
                   alt=""
-                />
+                /> */}
               </li>
             </ul>
           </div>
