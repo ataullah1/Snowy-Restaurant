@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import img1 from '../../assets/logImg.png';
+import useAuth from '../../Hooks/useAuth';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
+import { ImSpinner9 } from 'react-icons/im';
 const Nav = () => {
+  const { userDta, isLoading } = useAuth();
   return (
     <div className="fixed z-10 w-full">
       <nav className="bg-[#15151580] border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -59,16 +63,19 @@ const Nav = () => {
                 <Link className="block py-2 px-3 ">Contact</Link>
               </li>
               <li>
-                <Link to={'/login'}>
-                  <button className="py-2 px-6 bg-[#efa905] rounded ">
-                    Login
-                  </button>
-                </Link>
-                {/* <img
-                  className="h-12 w-12 rounded-full"
-                  src="https://lh3.googleusercontent.com/ogw/AF2bZygUqZp2qJPxkrop1vkMU0xrtvtWmzbZUomScZ9IJpjRILY=s32-c-mo"
-                  alt=""
-                /> */}
+                {isLoading ? (
+                  <div className="py-2 w-[60px] h-[60px] flex items-center justify-center text-5xl text-white">
+                    <ImSpinner9 className="animate-spin" />
+                  </div>
+                ) : userDta ? (
+                  <ProfileMenu />
+                ) : (
+                  <Link to={'/login'}>
+                    <button className="py-2 px-6 bg-[#efa905] rounded ">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

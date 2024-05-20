@@ -126,7 +126,10 @@ export default function Register() {
     return <Loding />;
   }
   return (
-    <div className="w-10/12 mx-auto pt-28">
+    <div className="w-10/12 mx-auto">
+      <h1 className="text-center pt-10 pb-8 text-3xl underline sm:text-4xl font-bold font-mono">
+        SignUp Snowy Restaurant
+      </h1>
       <div className="w-full md:w-[500px] mx-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <div>
@@ -235,11 +238,6 @@ export default function Register() {
               <p className="text-red-600">Password is not matched!</p>
             )}
           </div>
-          {/* <input
-            className="w-full bg-yellow-600 text-white py-2 font-semibold hover:bg-yellow-700 cursor-pointer duration-200"
-            value="Sign Up"
-            type="submit"
-          /> */}
           <button
             disabled={isLoading}
             className="w-full bg-yellow-600 text-white py-2 font-semibold hover:bg-yellow-700 cursor-pointer duration-200"
