@@ -1,0 +1,5 @@
+.react-tabs__tab--selected {
+  border-bottom: solid 3px #bb8405;
+  color: #bb8405;
+  user-select: none;
+}

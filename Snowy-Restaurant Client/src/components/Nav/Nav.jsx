@@ -48,7 +48,9 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link className="block py-2 px-3 ">Services</Link>
+                <Link className="block py-2 px-3" to={'/shop'}>
+                  Shop
+                </Link>
               </li>
               <li>
                 <Link className="block py-2 px-3 ">Pricing</Link>
