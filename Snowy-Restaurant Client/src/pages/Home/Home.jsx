@@ -21,7 +21,7 @@ const Home = () => {
         <Heading text="---From 11:00am to 10:00pm---" hed="ORDER ONLINE" />
         <CategorisSlider />
         <MiddleBanner />
-        <Heading text="---Check it out---" hed="FROM OUR MENUs" />
+        <Heading text="---Check it out---" hed="FROM OUR MENU" />
         <FromOurMenu />
         <ContactNo />
         <Heading text="---Should Try---" hed="CHEF RECOMMENDS" />
