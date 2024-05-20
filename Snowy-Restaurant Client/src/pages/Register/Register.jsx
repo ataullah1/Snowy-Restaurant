@@ -1,9 +1,11 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function Register() {
   const [errPass, setErrPass] = useState(false);
+  const [imgErr, setImgErr] = useState(null);
   const [eye, setEye] = useState(false);
   const {
     register,
@@ -11,17 +13,35 @@ export default function Register() {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setImgErr(false);
     setErrPass(false);
     if (data.Password !== data.Confirm_Password) {
       setErrPass(true);
       return;
     }
+    const photo = data.photo[0];
+    if (photo.name === '' || photo.size === 0) {
+      setImgErr(true);
+      return;
+    }
     const name = data.Name;
     const email = data.Email;
     const password = data.Password;
-    const allDta = { name, email, password };
-    console.log(allDta);
+
+    const fromImg = new FormData();
+    fromImg.append('image', photo);
+    try {
+      const { data } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`,
+        fromImg
+      );
+      const imgUrl = data.data.display_url;
+      const allDta = { name, email, password, imgUrl };
+      console.log(allDta);
+    } catch (error) {
+      console.log(error);
+    }
     // reset();
   };
   console.log(errors);
@@ -40,6 +60,20 @@ export default function Register() {
 
             {errors.Name && (
               <span className="text-red-600">Please Input Your Name</span>
+            )}
+          </div>
+          <div>
+            <input
+              className="w-full"
+              type="file"
+              placeholder="Name"
+              {...register('photo', { required: true })}
+            />
+            {errors.photo && (
+              <span className="text-red-600">Please Upload Your Photo</span>
+            )}
+            {imgErr && (
+              <span className="text-red-600">Please Upload Your Photo</span>
             )}
           </div>
           <div>
@@ -102,7 +136,7 @@ export default function Register() {
           <div>
             <input
               className="w-full"
-              type="text"
+              type="password"
               placeholder="Confirm Password"
               {...register('Confirm_Password', { required: true })}
             />
