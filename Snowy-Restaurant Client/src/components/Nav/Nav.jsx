@@ -57,7 +57,9 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link className="block py-2 px-3 ">Pricing</Link>
+                <Link className="block py-2 px-3" to={'/pricing'}>
+                  Pricing
+                </Link>
               </li>
               <li>
                 <Link className="block py-2 px-3 ">Contact</Link>

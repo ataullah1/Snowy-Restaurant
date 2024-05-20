@@ -6,6 +6,8 @@ import Register from '../pages/Register/Register';
 import Root from '../root/Root';
 import OurMenu from '../pages/OurMenu/OurMenu';
 import Shop from '../pages/Shop/Shop';
+import Pricing from '../pages/Pricing/Pricing';
+import PrivetRoute from './PrivetRoute';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: '/shop',
         element: <Shop />,
+      },
+      {
+        path: '/pricing',
+        element: (
+          <PrivetRoute>
+            <Pricing />
+          </PrivetRoute>
+        ),
       },
       {
         path: '/about',

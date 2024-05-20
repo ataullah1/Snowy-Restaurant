@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
@@ -11,6 +11,7 @@ import Loding from '../Loding/Loding';
 export default function Login() {
   const [eye, setEye] = useState(false);
   const naviget = useNavigate();
+  const location = useLocation();
   const {
     emlPassLogin,
     gitHubLogin,
@@ -19,6 +20,11 @@ export default function Login() {
     setLoading,
     isLoading,
   } = useAuth();
+
+  if (userDta) {
+    naviget('/');
+  }
+
   const {
     register,
     handleSubmit,
@@ -47,10 +53,10 @@ export default function Login() {
         text: 'Your account has been successfully Login.',
         icon: 'success',
       });
+      naviget(location?.state ? location.state : '/');
 
       reset();
       // naviget('/login');
-      naviget(location?.state ? location.state : '/');
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -177,8 +183,8 @@ export default function Login() {
         </form>
         <p className="pt-3 text-slate-800 dark:text-slate-100">
           Already have an account?{' '}
-          <Link to={'/login'} className="underline text-mClr">
-            Login
+          <Link to={'/register'} className="underline text-mClr">
+            Sign Up
           </Link>
         </p>
         <div>
