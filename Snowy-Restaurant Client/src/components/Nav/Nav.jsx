@@ -3,8 +3,12 @@ import img1 from '../../assets/logImg.png';
 import useAuth from '../../Hooks/useAuth';
 import ProfileMenu from '../ProfileMenu/ProfileMenu';
 import { ImSpinner9 } from 'react-icons/im';
+import { FaCartPlus } from 'react-icons/fa';
+import useCarts from '../../Hooks/useCarts';
 const Nav = () => {
   const { userDta, isLoading } = useAuth();
+  const [carts] = useCarts();
+  console.log(carts);
   return (
     <div className="fixed z-10 w-full">
       <nav className="bg-[#15151580] border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -61,9 +65,16 @@ const Nav = () => {
                   Pricing
                 </Link>
               </li>
-              <li>
-                <Link className="block py-2 px-3 ">Contact</Link>
-              </li>
+              {userDta && (
+                <li className="">
+                  <Link className="block py-2 px-5 text-2xl relative">
+                    <FaCartPlus />
+                    <span className="absolute -top-3 right-0 text-base bg-red-500 rounded-full px-1">
+                      {carts.length}
+                    </span>
+                  </Link>
+                </li>
+              )}
               <li>
                 {isLoading ? (
                   <div className="py-2 w-[60px] h-[60px] flex items-center justify-center text-5xl text-white">

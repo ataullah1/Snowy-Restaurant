@@ -3,16 +3,23 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import CommonCover from '../../components/CommonCover/CommonCover';
 import './shop.css';
 import ChefRecommendCard from '../../components/ChefRecommends/ChefRecommendCard';
-import useAxios from '../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
+import useCarts from '../../Hooks/useCarts';
 
 const Shop = () => {
-  const axios = useAxios();
+  const axioss = useAxios();
+  const { userDta } = useAuth();
+  const naviget = useNavigate();
+  const location = useLocation();
+  const [, refetch] = useCarts();
+
   const { data = [] } = useQuery({
     queryFn: async () => {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/menu`
-      );
+      const { data } = await axioss.get(`/menu`);
       return data;
     },
     queryKey: ['menus'],
@@ -23,8 +30,41 @@ const Shop = () => {
   const dessert = data.filter((dta) => dta.category === 'dessert');
   const drinks = data.filter((dta) => dta.category === 'drinks');
   const salad = data.filter((dta) => dta.category === 'salad');
-  console.log(soup);
+  // console.log(soup);
 
+  const handleCard = async (id) => {
+    if (userDta && userDta.email) {
+      // console.log('data added to card');
+      console.log(id);
+      const cartItem = {
+        menuId: id,
+        email: userDta.email,
+      };
+      const { data } = await axioss.post(`/carts`, cartItem);
+      refetch();
+      Swal.fire({
+        title: 'Succsessfully Added',
+        text: 'Your item is successfully added to cart.',
+        icon: 'success',
+      });
+      console.log(data);
+    } else {
+      // go to loging
+      Swal.fire({
+        title: 'You are not login !',
+        text: 'Please login to add to the cart?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Log in!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          naviget('/login', { state: location.pathname });
+        }
+      });
+    }
+  };
   return (
     <div>
       <CommonCover heding="OUR SHOP" des="Would you like to try a dish?" />
@@ -52,7 +92,11 @@ const Shop = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9">
               {salad.map((dta) => (
-                <ChefRecommendCard key={dta._id} data={dta} />
+                <ChefRecommendCard
+                  key={dta._id}
+                  data={dta}
+                  handleCard={handleCard}
+                />
               ))}
             </div>
           </TabPanel>

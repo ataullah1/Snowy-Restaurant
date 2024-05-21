@@ -1,4 +1,4 @@
-const ChefRecommendCard = ({ data }) => {
+const ChefRecommendCard = ({ data, handleCard }) => {
   return (
     <div className="w-full bg-zinc-100 rounded-md shadow-xl shadow-slate-200">
       <div
@@ -14,7 +14,10 @@ const ChefRecommendCard = ({ data }) => {
         <p className="max-w-[345px] mx-auto px-3 text-center text-neutral-900 text-base font-normal font-['Inter'] leading-relaxed">
           {data?.recipe.slice(0, 110)}
         </p>
-        <button className="py-2 px-5 bg-gray-200 hover:bg-transparent duration-300 rounded-lg border-2 border-b-yellow-600 hover:border-yellow-600 mt-2 text-yellow-600 text-lg font-medium font-['Inter'] uppercase">
+        <button
+          onClick={() => handleCard(data._id)}
+          className="py-2 px-5 bg-gray-200 hover:bg-transparent duration-300 rounded-lg border-2 border-b-yellow-600 hover:border-yellow-600 mt-2 text-yellow-600 text-lg font-medium font-['Inter'] uppercase"
+        >
           add to cart
         </button>
       </div>
