@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosSec = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://snowy-restaurant-server.vercel.app',
 });
 const useAxios = () => {
   return axiosSec;
