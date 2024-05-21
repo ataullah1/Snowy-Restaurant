@@ -4,6 +4,7 @@ import { FaCartPlus, FaHome, FaList } from 'react-icons/fa';
 import './dashboard.css';
 import { useEffect, useRef } from 'react';
 import { FaMessage, FaShop } from 'react-icons/fa6';
+import { Toaster } from 'react-hot-toast';
 const MyDashboard = () => {
   const location = useLocation();
   const active = useRef();
@@ -19,6 +20,7 @@ const MyDashboard = () => {
 
   return (
     <div>
+      <Toaster />
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"

@@ -9,6 +9,7 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
 import useCarts from '../../Hooks/useCarts';
+import toast from 'react-hot-toast';
 
 const Shop = () => {
   const axioss = useAxios();
@@ -46,11 +47,12 @@ const Shop = () => {
       };
       const { data } = await axioss.post(`/carts`, cartItem);
       refetch();
-      Swal.fire({
-        title: 'Succsessfully Added',
-        text: 'Your item is successfully added to cart.',
-        icon: 'success',
-      });
+      // Swal.fire({
+      //   title: 'Succsessfully Added',
+      //   text: 'Your item is successfully added to cart.',
+      //   icon: 'success',
+      // });
+      toast.success('Successfully Added to Cart !');
       console.log(data);
     } else {
       // go to loging

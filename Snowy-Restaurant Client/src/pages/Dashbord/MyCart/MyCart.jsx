@@ -2,16 +2,32 @@ import { FaTrash } from 'react-icons/fa';
 import Heading from '../../../components/Heading/Heading';
 import useCarts from '../../../Hooks/useCarts';
 import useAxios from '../../../Hooks/useAxios';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 // import { ImSpinner6 } from 'react-icons/im';
 
 const MyCart = () => {
   const axioss = useAxios();
-  const [carts] = useCarts();
+  const [carts, refetch] = useCarts();
   const totalPrice = carts.reduce((total, current) => total + current.price, 0);
   // console.log(myCart);
   const handleDelete = async (id) => {
-    const { data } = await axioss.delete(`/carts-delete${id}`);
-    console.log(data);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axioss.delete(`/carts-delete${id}`);
+        console.log(data);
+        refetch();
+        toast.success('Successfully Deleted!');
+      }
+    });
   };
   return (
     <div>
