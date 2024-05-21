@@ -32,13 +32,17 @@ const Shop = () => {
   const salad = data.filter((dta) => dta.category === 'salad');
   // console.log(soup);
 
-  const handleCard = async (id) => {
+  const handleCard = async (id, img, name, price) => {
     if (userDta && userDta.email) {
       // console.log('data added to card');
       console.log(id);
+
       const cartItem = {
         menuId: id,
         email: userDta.email,
+        image: img,
+        name: name,
+        price: price,
       };
       const { data } = await axioss.post(`/carts`, cartItem);
       refetch();

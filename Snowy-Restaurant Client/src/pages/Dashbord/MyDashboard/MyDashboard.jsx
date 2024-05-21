@@ -1,8 +1,9 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import Logo from '../../../assets/dashboard-logo.png';
-import { FaCartPlus, FaHome } from 'react-icons/fa';
+import { FaCartPlus, FaHome, FaList } from 'react-icons/fa';
 import './dashboard.css';
 import { useEffect, useRef } from 'react';
+import { FaMessage, FaShop } from 'react-icons/fa6';
 const MyDashboard = () => {
   const location = useLocation();
   const active = useRef();
@@ -103,6 +104,45 @@ const MyDashboard = () => {
               >
                 <FaHome />
                 <span className="ms-3">My Booking</span>
+              </NavLink>
+            </li>
+            <div className="py-3">
+              <div className="h-[1px] bg-white w-full" />
+            </div>
+            <li>
+              <NavLink
+                to={'/'}
+                className="flex items-center p-2 text-neutral-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group"
+              >
+                <FaHome />
+                <span className="ms-3">Home</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={'/menu'}
+                className="flex items-center p-2 text-neutral-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group"
+              >
+                <FaList />
+                <span className="ms-3">Menu</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={'/shop'}
+                className="flex items-center p-2 text-neutral-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group"
+              >
+                <FaShop />
+                <span className="ms-3">Shop</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={'/contact'}
+                className="flex items-center p-2 text-neutral-900 rounded-lg hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 group"
+              >
+                <FaMessage />
+                <span className="ms-3">Contact</span>
               </NavLink>
             </li>
           </ul>

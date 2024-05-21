@@ -15,7 +15,9 @@ const ChefRecommendCard = ({ data, handleCard }) => {
           {data?.recipe.slice(0, 110)}
         </p>
         <button
-          onClick={() => handleCard(data._id)}
+          onClick={() =>
+            handleCard(data._id, data.image, data.name, data.price)
+          }
           className="py-2 px-5 bg-gray-200 hover:bg-transparent duration-300 rounded-lg border-2 border-b-yellow-600 hover:border-yellow-600 mt-2 text-yellow-600 text-lg font-medium font-['Inter'] uppercase"
         >
           add to cart
