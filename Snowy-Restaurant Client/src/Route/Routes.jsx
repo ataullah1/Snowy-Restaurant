@@ -8,6 +8,9 @@ import OurMenu from '../pages/OurMenu/OurMenu';
 import Shop from '../pages/Shop/Shop';
 import Pricing from '../pages/Pricing/Pricing';
 import PrivetRoute from './PrivetRoute';
+import MyDashboard from '../pages/Dashbord/MyDashboard/MyDashboard';
+import MyCart from '../pages/Dashbord/MyCart/MyCart';
+import DashboardHome from '../pages/Dashbord/DashboardHome/DashboardHome';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,36 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <MyDashboard />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardHome />,
+      },
+      {
+        path: '/dashboard/my-cart',
+        element: <MyCart />,
+      },
+      {
+        path: '/dashboard/my-booking',
+        element: <MyCart />,
+      },
+      {
+        path: '/dashboard/add-review',
+        element: <MyCart />,
+      },
+      {
+        path: '/dashboard/payment-history',
+        element: <MyCart />,
+      },
+      {
+        path: '/dashboard/reservation',
+        element: <MyCart />,
       },
     ],
   },

@@ -49,11 +49,6 @@ export default function Register() {
     fromImg.append('image', photo);
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`,
-        fromImg
-      );
-      const imgUrl = data.data.display_url;
       // const allDta = { name, email, password, imgUrl };
       // console.log(allDta);
       const result = await emlPassRegister(email, password);
@@ -66,6 +61,11 @@ export default function Register() {
       // };
       // jwtRequet();
       // Update Profile
+      const { data } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`,
+        fromImg
+      );
+      const imgUrl = data.data.display_url;
       await profileUpdate(name, imgUrl);
       Swal.fire({
         title: 'Good job!',

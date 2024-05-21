@@ -67,7 +67,10 @@ const Nav = () => {
               </li>
               {userDta && (
                 <li className="">
-                  <Link className="block py-2 px-5 text-2xl relative">
+                  <Link
+                    to={'/dashboard/my-cart'}
+                    className="block py-2 px-5 text-2xl relative"
+                  >
                     <FaCartPlus />
                     <span className="absolute -top-3 right-0 text-base bg-red-500 rounded-full px-1">
                       {carts.length}
