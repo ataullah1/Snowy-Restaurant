@@ -8,8 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
+import useAxios from '../../Hooks/useAxios';
 
 export default function Register() {
+  const axioss = useAxios();
   const [errPass, setErrPass] = useState(false);
   const [imgErr, setImgErr] = useState(null);
   const [eye, setEye] = useState(false);
@@ -67,6 +69,16 @@ export default function Register() {
       );
       const imgUrl = data.data.display_url;
       await profileUpdate(name, imgUrl);
+
+      // database send user data
+      const userEmail = result.user.email;
+      const userName = result.user.displayName;
+      const userDta = {
+        userEmail,
+        userName,
+      };
+      const { data: userDtaa } = await axioss.post('/users', userDta);
+      console.log(userDtaa);
       Swal.fire({
         title: 'Good job!',
         text: 'Your account has been successfully created. Please Login Now.',
