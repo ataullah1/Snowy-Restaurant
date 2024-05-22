@@ -11,6 +11,7 @@ import PrivetRoute from './PrivetRoute';
 import MyDashboard from '../pages/Dashbord/MyDashboard/MyDashboard';
 import MyCart from '../pages/Dashbord/MyCart/MyCart';
 import DashboardHome from '../pages/Dashbord/DashboardHome/DashboardHome';
+import AllUsers from '../pages/Dashbord/AllUsers/AllUsers';
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/reservation',
         element: <MyCart />,
+      },
+      {
+        path: '/dashboard/all-users',
+        element: <AllUsers />,
       },
     ],
   },

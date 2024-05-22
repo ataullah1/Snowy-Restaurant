@@ -7,8 +7,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImSpinner9 } from 'react-icons/im';
 import { FcGoogle } from 'react-icons/fc';
 import Loding from '../Loding/Loding';
+import useAxios from '../../Hooks/useAxios';
 
 export default function Login() {
+  const axioss = useAxios();
   const [eye, setEye] = useState(false);
   const naviget = useNavigate();
   const location = useLocation();
@@ -73,7 +75,7 @@ export default function Login() {
   // all Social Login
   const socialLogin = (socialLogin) => {
     socialLogin()
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
         // const jwtRequet = async () => {
         //   const { data } = await axiosSecu.post(`/jwt`, {
@@ -83,6 +85,14 @@ export default function Login() {
         // };
         // jwtRequet();
 
+        const userEmail = result.user.email;
+        const userName = result.user.displayName;
+        const userDta = {
+          userEmail,
+          userName,
+        };
+        const { data: userDtaa } = await axioss.post('/users', userDta);
+        console.log(userDtaa);
         naviget(location?.state ? location.state : '/');
         console.log(user);
         Swal.fire({

@@ -33,9 +33,25 @@ async function run() {
 
     app.post('/users', async (req, res) => {
       const user = req.body;
+      const query = { userEmail: user.userEmail };
+      const existingUser = await usersCollection.findOne(query);
+      if (existingUser) {
+        return res.send({ message: 'User Allready Exists', insertedId: null });
+      }
       const result = await usersCollection.insertOne(user);
       res.send(result);
     });
+    app.get('/users', async (req, res) => {
+      const result = await usersCollection.find().toArray();
+      res.send(result);
+    });
+    app.delete('/user/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = usersCollection.deleteOne(query);
+      res.send(result);
+    });
+
     app.get('/menu', async (req, res) => {
       const result = await menuCollection.find().toArray();
       res.send(result);

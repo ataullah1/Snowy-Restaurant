@@ -104,7 +104,7 @@ export default function Register() {
   // all Social Login
   const socialLogin = (socialLogin) => {
     socialLogin()
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
         // const jwtRequet = async () => {
         //   const { data } = await axiosSecu.post(`/jwt`, {
@@ -114,6 +114,14 @@ export default function Register() {
         // };
         // jwtRequet();
 
+        const userEmail = result.user.email;
+        const userName = result.user.displayName;
+        const userDta = {
+          userEmail,
+          userName,
+        };
+        const { data: userDtaa } = await axioss.post('/users', userDta);
+        console.log(userDtaa);
         naviget(location?.state ? location.state : '/');
         console.log(user);
         Swal.fire({
