@@ -18,6 +18,24 @@ const AllUsers = () => {
     },
   });
 
+  const handleAdim = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you agree to admin him?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axioss.patch(`/user/admin/${id}`);
+        console.log(data);
+        refetch();
+        toast.success('Successfully set admin !');
+      }
+    });
+  };
   const handleDelete = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
