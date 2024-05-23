@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
+// const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 3000;
 
 // Middleware ==============
@@ -51,11 +52,11 @@ async function run() {
       const result = usersCollection.deleteOne(query);
       res.send(result);
     });
-app.patch('/user/admin/:id', async (req, res) => {
+    app.patch('/user/admin/:id', async (req, res) => {
       const id = req.params.id;
       const flter = { _id: new ObjectId(id) };
       const doc = {
-        $ser: {
+        $set: {
           role: 'admin',
         },
       };
