@@ -67,7 +67,10 @@ const AllUsers = () => {
                     {dta.userEmail}
                   </td>
                   <td className="border-r text-center text-neutral-500 text-base font-normal font-['Inter'] min-w-20">
-                    <button className="w-[50px] h-[50px] bg-[#D1A054] hover:bg-[#ac803e] duration-150 rounded-[5px] text-2xl flex items-center justify-center text-white mx-auto">
+                    <button
+                      onClick={() => handleAdim(dta._id)}
+                      className="w-[50px] h-[50px] bg-[#D1A054] hover:bg-[#ac803e] duration-150 rounded-[5px] text-2xl flex items-center justify-center text-white mx-auto"
+                    >
                       <TiGroup />
                     </button>
                   </td>

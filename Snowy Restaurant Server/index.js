@@ -51,6 +51,17 @@ async function run() {
       const result = usersCollection.deleteOne(query);
       res.send(result);
     });
+app.patch('/user/admin/:id', async (req, res) => {
+      const id = req.params.id;
+      const flter = { _id: new ObjectId(id) };
+      const doc = {
+        $ser: {
+          role: 'admin',
+        },
+      };
+      const result = usersCollection.updateOne(flter, doc);
+      res.send(result);
+    });
 
     app.get('/menu', async (req, res) => {
       const result = await menuCollection.find().toArray();
