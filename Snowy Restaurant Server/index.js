@@ -53,9 +53,20 @@ async function run() {
           return res.status(401).send({ message: 'unauthorized access' });
         }
         req.decoded = decoded;
-
         next();
       });
+    };
+
+    // VerifyAdmin middleware
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { userEmail: email };
+      const result = await usersCollection.findOne(query);
+      const isAdmin = result?.role !== 'admin';
+      if (isAdmin) {
+        return res.status(403).send({ message: 'Forbidden access' });
+      }
+      next();
     };
 
     app.post('/users', async (req, res) => {
@@ -68,7 +79,7 @@ async function run() {
       const result = await usersCollection.insertOne(user);
       res.send(result);
     });
-    app.get('/users', verifyToken, async (req, res) => {
+    app.get('/users', verifyToken, verifyAdmin, async (req, res) => {
       // const authoriz = req.headers;
       // console.log(authoriz);
       const result = await usersCollection.find().toArray();
@@ -77,12 +88,15 @@ async function run() {
     // Check Admin
     app.get('/user/admin/:email', verifyToken, async (req, res) => {
       const email = req.params.email;
+      // console.log('user admin email :::: ', email);
+      console.log('request ddecoded  :::: ', req.decoded.email);
 
       if (email !== req.decoded.email) {
         return res.status(403).send({ message: 'Forbidden access' });
       }
       const query = { userEmail: email };
-      const userAdmin = usersCollection.findOne(query);
+      const userAdmin = await usersCollection.findOne(query);
+      // console.log('admin user::: ', userAdmin.role);
       let admin = false;
       if (userAdmin) {
         admin = userAdmin?.role === 'admin';
