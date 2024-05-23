@@ -3,8 +3,8 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const axiosSec = axios.create({
-  // baseURL: 'https://snowy-restaurant-server.vercel.app',
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://snowy-restaurant-server.vercel.app',
+  // baseURL: 'http://localhost:3000',
 });
 const useAxios = () => {
   const { logOutAcc } = useAuth();
