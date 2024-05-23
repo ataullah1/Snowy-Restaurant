@@ -1,8 +1,11 @@
+import useAuth from '../../../Hooks/useAuth';
+
 const DashboardHome = () => {
+  const { userDta } = useAuth();
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-neutral-900 text-[32px] font-semibold font-['Cinzel']">
-        Hi, Welcome Back!
+        Hi, {userDta.displayName}. Welcome Back!
       </h1>
       <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className="w-full h-[150px] bg-gradient-to-r from-fuchsia-500 to-fuchsia-100 rounded-lg" />

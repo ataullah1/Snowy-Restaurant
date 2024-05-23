@@ -8,7 +8,8 @@ import { Toaster } from 'react-hot-toast';
 import useAdmin from '../../../Hooks/useAdmin';
 const MyDashboard = () => {
   const [isAdmin] = useAdmin();
-  const admin = isAdmin;
+
+  console.log(isAdmin);
   return (
     <div>
       <Toaster />
@@ -23,7 +24,7 @@ const MyDashboard = () => {
             <img src={Logo} alt="" />
           </div>
           <ul className="space-y-2 font-medium dashboardNav">
-            {admin ? (
+            {isAdmin ? (
               <>
                 <li>
                   <NavLink
