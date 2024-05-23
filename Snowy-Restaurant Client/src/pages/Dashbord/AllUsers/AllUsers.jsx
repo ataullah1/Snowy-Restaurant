@@ -5,6 +5,7 @@ import useAxios from '../../../Hooks/useAxios';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
+import { GrUserAdmin } from 'react-icons/gr';
 // import { ImSpinner6 } from 'react-icons/im';
 
 const AllUsers = () => {
@@ -89,7 +90,7 @@ const AllUsers = () => {
                       onClick={() => handleAdim(dta._id)}
                       className="w-[50px] h-[50px] bg-[#D1A054] hover:bg-[#ac803e] duration-150 rounded-[5px] text-2xl flex items-center justify-center text-white mx-auto"
                     >
-                      <TiGroup />
+                      {dta.role === 'admin' ? <GrUserAdmin /> : <TiGroup />}
                     </button>
                   </td>
                   <td className="border-r text-center">
