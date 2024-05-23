@@ -11,10 +11,11 @@ import {
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from 'react';
 import auth from '../firebase/firebase.config';
-import useAxios from '../Hooks/useAxios';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 export const ContextAuth = createContext();
 const Provider = ({ children }) => {
-  const axios = useAxios();
+  const axiosPub = useAxiosPublic();
+
   const [isLoading, setLoading] = useState(true);
   const [userDta, setUserDta] = useState(null);
   // Register User
@@ -52,9 +53,6 @@ const Provider = ({ children }) => {
 
   // Logout account
   const logOutAcc = () => {
-    axios('/logout', {
-      withCredentials: true,
-    });
     // console.log('JWT logout Token,', data);
     return signOut(auth)
       .then(() => {
@@ -66,14 +64,25 @@ const Provider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUserDta(currentUser);
       setLoading(false);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        const { data } = await axiosPub.post('/jwt', userInfo);
+        // console.log(data.token);
+        if (data.token) {
+          localStorage.setItem('access-token', data.token);
+        }
+      } else {
+        localStorage.removeItem('access-token');
+        //
+      }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosPub]);
   const authDta = {
     emlPassRegister,
     emlPassLogin,

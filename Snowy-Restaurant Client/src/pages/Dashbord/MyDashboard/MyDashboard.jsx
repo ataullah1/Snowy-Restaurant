@@ -5,8 +5,10 @@ import './dashboard.css';
 // import { useEffect, useRef } from 'react';
 import { FaMessage, FaShop } from 'react-icons/fa6';
 import { Toaster } from 'react-hot-toast';
+import useAdmin from '../../../Hooks/useAdmin';
 const MyDashboard = () => {
-  const admin = true;
+  const [isAdmin] = useAdmin();
+  const admin = isAdmin;
   return (
     <div>
       <Toaster />

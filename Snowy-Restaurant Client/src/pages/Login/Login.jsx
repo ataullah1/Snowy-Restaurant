@@ -70,7 +70,7 @@ export default function Login() {
     }
     // reset();
   };
-  console.log(errors);
+  // console.log(errors);
 
   // all Social Login
   const socialLogin = (socialLogin) => {

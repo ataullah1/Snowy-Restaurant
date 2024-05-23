@@ -8,7 +8,7 @@ import useCarts from '../../Hooks/useCarts';
 const Nav = () => {
   const { userDta, isLoading } = useAuth();
   const [carts] = useCarts();
-  console.log(carts);
+  // console.log(carts);
   return (
     <div className="fixed z-10 w-full">
       <nav className="bg-[#15151580] border-gray-200 dark:bg-gray-900 dark:border-gray-700">

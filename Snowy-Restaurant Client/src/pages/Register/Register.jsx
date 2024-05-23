@@ -90,12 +90,12 @@ export default function Register() {
       naviget(location?.state ? location.state : '/');
     } catch (error) {
       console.log(error);
+      setLoading(false);
       Swal.fire({
         title: 'Oops...!',
         text: `Sorry, your account could not be Created ! "${error.message}"`,
         icon: 'error',
       });
-      setLoading(false);
     }
     // reset();
   };

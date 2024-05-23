@@ -14,7 +14,7 @@ const FromOurMenu = () => {
     queryKey: ['menus'],
   });
   const popular = data.filter((dta) => dta.category === 'popular');
-  console.log(popular);
+// console.log(popular);
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
